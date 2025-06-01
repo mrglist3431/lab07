@@ -1,0 +1,464 @@
+┌──(kali㉿kali)-[~]
+└─$ git clone https://github.com/mrglist3431/lab03                          
+Cloning into 'lab03'...
+remote: Enumerating objects: 212, done.
+remote: Counting objects: 100% (212/212), done.
+remote: Compressing objects: 100% (102/102), done.
+remote: Total 212 (delta 96), reused 206 (delta 93), pack-reused 0 (from 0)
+Receiving objects: 100% (212/212), 102.23 KiB | 693.00 KiB/s, done.
+Resolving deltas: 100% (96/96), done.
+                                                                                                                   
+┌──(kali㉿kali)-[~]
+└─$ cd lab03         
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git remote remove origin                                             
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git remote add origin https://github.com/mrglist3431/lab04           
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ mkdir .github/workflows
+mkdir: cannot create directory ‘.github/workflows’: No such file or directory
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ mkdir .github          
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ ls                      
+CMakeLists.txt  formatter_ex_lib  hello_world_application  log.txt    solver_application  sources
+examples        formatter_lib     include                  README.md  solver_lib
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ cd .github
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ mkdir workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ cat>CI.yml                          
+name: CMake
+
+on:
+ push:
+  branches: [main]
+ pull_request:
+  branches: [main]
+
+jobs: 
+ build_Linux:
+
+  runs-on: ubuntu-latest
+
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Configure Solver
+    run: cmake ${{github.workspace}}/solver_application/ -B ${{github.workspace}}/solver_application/build
+
+  - name: Build Solver
+    run: cmake --build ${{github.workspace}}/solver_application/build
+
+  - name: Configure HelloWorld
+    run: cmake ${{github.workspace}}/hello_world_application/ -B ${{github.workspace}}/hello_world_application/build
+
+  - name: Build HelloWorld
+    run: cmake --build ${{github.workspace}}/hello_world_application/build
+
+ build_Windows:
+
+  runs-on: windows-latest
+
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Configure Solver
+    run: cmake ${{github.workspace}}/solver_application/ -B ${{github.workspace}}/solver_application/build
+
+  - name: Build Solver
+    run: cmake --build ${{github.workspace}}/solver_application/build
+
+  - name: Configure HelloWorld
+    run: cmake ${{github.workspace}}/hello_world_application/ -B ${{github.workspace}}/hello_world_application/build
+
+  - name: Build HelloWorld
+    run: cmake --build ${{github.workspace}}/hello_world_application/build
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ nano CI.yml            
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ git add .github                                           
+fatal: pathspec '.github' did not match any files
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ ls
+CI.yml  workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ rm CI.yml  
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ ls
+workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ cat>CI.yml
+name: CMake
+
+on:
+ push:
+  branches: [main]
+ pull_request:
+  branches: [main]
+
+jobs: 
+ build_Linux:
+
+  runs-on: ubuntu-latest
+
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Configure Solver
+    run: cmake ${{github.workspace}}/solver_application/ -B ${{github.workspace}}/solver_application/build
+
+  - name: Build Solver
+    run: cmake --build ${{github.workspace}}/solver_application/build
+
+  - name: Configure HelloWorld
+    run: cmake ${{github.workspace}}/hello_world_application/ -B ${{github.workspace}}/hello_world_application/build
+
+  - name: Build HelloWorld
+    run: cmake --build ${{github.workspace}}/hello_world_application/build
+
+ build_Windows:
+
+  runs-on: windows-latest
+
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Configure Solver
+    run: cmake ${{github.workspace}}/solver_application/ -B ${{github.workspace}}/solver_application/build
+
+  - name: Build Solver
+    run: cmake --build ${{github.workspace}}/solver_application/build
+
+  - name: Configure HelloWorld
+    run: cmake ${{github.workspace}}/hello_world_application/ -B ${{github.workspace}}/hello_world_application/build
+
+  - name: Build HelloWorld
+    run: cmake --build ${{github.workspace}}/hello_world_application/build
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ git add .github
+fatal: pathspec '.github' did not match any files
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ 
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ ..
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ ..
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git add .github
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git commit -m "added CI.yml"                  
+[main e0b72a9] added CI.yml
+ 1 file changed, 46 insertions(+)
+ create mode 100644 .github/workflows/CI.yml
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main        
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/mrglist3431/lab04/'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/mrglist3431/lab04/'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/mrglist3431/lab04/'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 217, done.
+Counting objects: 100% (217/217), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (102/102), done.
+Writing objects: 100% (217/217), 102.78 KiB | 102.78 MiB/s, done.
+Total 217 (delta 97), reused 211 (delta 96), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (97/97), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1014
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1017
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/mrglist3431/lab04/security/secret-scanning/unblock-secret/2xuwoheTHsgQ1IMmbLe4N9MVCap
+remote:     
+remote: 
+remote: 
+To https://github.com/mrglist3431/lab04
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/mrglist3431/lab04'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 217, done.
+Counting objects: 100% (217/217), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (102/102), done.
+Writing objects: 100% (217/217), 102.78 KiB | 102.78 MiB/s, done.
+Total 217 (delta 97), reused 211 (delta 96), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (97/97), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1014
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1017
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/mrglist3431/lab04/security/secret-scanning/unblock-secret/2xuwoheTHsgQ1IMmbLe4N9MVCap
+remote:     
+remote: 
+remote: 
+To https://github.com/mrglist3431/lab04
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/mrglist3431/lab04'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ ls
+CMakeLists.txt  formatter_ex_lib  hello_world_application  log.txt    solver_application  sources
+examples        formatter_lib     include                  README.md  solver_lib
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ rm README.md
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/mrglist3431/lab04/'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ 
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/mrglist3431/lab04/'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main   
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 217, done.
+Counting objects: 100% (217/217), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (102/102), done.
+Writing objects: 100% (217/217), 102.78 KiB | 102.78 MiB/s, done.
+Total 217 (delta 97), reused 211 (delta 96), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (97/97), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1014
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1017
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/mrglist3431/lab04/security/secret-scanning/unblock-secret/2xuwoheTHsgQ1IMmbLe4N9MVCap
+remote:     
+remote: 
+remote: 
+To https://github.com/mrglist3431/lab04
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/mrglist3431/lab04'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git add                     
+Nothing specified, nothing added.
+hint: Maybe you wanted to say 'git add .'?
+hint: Disable this message with "git config advice.addEmptyPathspec false"
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git add README.md
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git commit -m "added"       
+[main 96cd4ca] added
+ 1 file changed, 2215 deletions(-)
+ delete mode 100644 README.md
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main 
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 219, done.
+Counting objects: 100% (219/219), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (104/104), done.
+Writing objects: 100% (219/219), 102.94 KiB | 102.94 MiB/s, done.
+Total 219 (delta 98), reused 211 (delta 96), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (98/98), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1014
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1017
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/mrglist3431/lab04/security/secret-scanning/unblock-secret/2xuwoheTHsgQ1IMmbLe4N9MVCap
+remote:     
+remote: 
+remote: 
+To https://github.com/mrglist3431/lab04
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/mrglist3431/lab04'
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ ls
+CMakeLists.txt  formatter_ex_lib  hello_world_application  log.txt             solver_lib
+examples        formatter_lib     include                  solver_application  sources
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ git push origin main
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 219, done.
+Counting objects: 100% (219/219), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (104/104), done.
+Writing objects: 100% (219/219), 102.94 KiB | 102.94 MiB/s, done.
+Total 219 (delta 98), reused 211 (delta 96), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (98/98), done.
+To https://github.com/mrglist3431/lab04
+ * [new branch]      main -> main
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ nano CI.yml
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ ls
+CMakeLists.txt  formatter_ex_lib  hello_world_application  log.txt             solver_lib
+examples        formatter_lib     include                  solver_application  sources
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03]
+└─$ .github
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ ls
+workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github]
+└─$ workflows
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ nano CI.yml
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ git add CI.yml      
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ git commit -m "rewrite CI"
+[main 67a9887] rewrite CI
+ 1 file changed, 38 insertions(+), 28 deletions(-)
+                                                                                                                   
+┌──(kali㉿kali)-[~/lab03/.github/workflows]
+└─$ git push origin main      
+Username for 'https://github.com': mrglist3431
+Password for 'https://mrglist3431@github.com': 
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 687 bytes | 687.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/mrglist3431/lab04
+   96cd4ca..67a9887  main -> main
+                                          
