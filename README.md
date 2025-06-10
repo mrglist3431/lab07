@@ -1,4 +1,4 @@
-# lab05
+# lab06
 ┌──(kali㉿kali)-[~]
 └─$ export GITHUB_USERNAME=mrglist3431       
                                                                                                                    
@@ -16,13 +16,13 @@
 └─$ source scripts/activate
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ cd projects/lab05              
+└─$ cd projects/lab06              
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
 sed: can't read .travis.yml: No such file or directory
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$     cat > .travis.yml <<EOF
 language: cpp
 
@@ -35,15 +35,15 @@ script:
   - cmake --build _build --target test -- ARGS=--verbose
 EOF
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ gsed -i '/cmake --build _build --target install/a\
 - cmake --build _build --target test -- ARGS=--verbose
 ' .travis.yml
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ travis lint
 
   ________                                 __
@@ -71,7 +71,7 @@ EOF
     There is absolutely no warranty on any results obtained from TRAVIS.
 
  #  Running on kali at Tue Jun 10 10:16:11 2025 (PID 7302)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab05
+ #  Running in /home/kali/mrglist3431/workspace/projects/lab06
  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
@@ -140,13 +140,13 @@ Unknown parameter: "lint".
 *** The End ***
                                                                                                                    
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$  git add .travis.yml
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git add tests
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git add -p
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 76e55eb..ee61cab 100644
@@ -168,27 +168,27 @@ index 76e55eb..ee61cab 100644
 (1/1) Stage this hunk [y,n,q,a,d,e,p,?]? y
 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git commit -m"added tests"
 [main e68f8f8] added tests
  3 files changed, 38 insertions(+)
  create mode 100644 .travis.yml
  create mode 100644 tests/test1.cpp
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push origin master
 error: src refspec master does not match any
-error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
+error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ A
 A: command not found
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$                                                                         gem install travis
 ^CERROR:  Interrupted
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ gem install travis
 Fetching launchy-2.4.3.gem
 Fetching faraday-retry-1.0.3.gem
@@ -237,23 +237,23 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
         /usr/lib/ruby/vendor_ruby/rubygems/gem_runner.rb:52:in `run'
         /usr/bin/gem:12:in `<main>'
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git branch -M main
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push -u origin main
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
-To https://github.com/mrglist3431/lab05
+To https://github.com/mrglist3431/lab06
  ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
+error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
 hint: Updates were rejected because the remote contains work that you do not                                       
 hint: have locally. This is usually caused by another repository pushing to
 hint: the same ref. If you want to integrate the remote changes, use
 hint: 'git pull' before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull orign         
 fatal: 'orign' does not appear to be a git repository
 fatal: Could not read from remote repository.
@@ -261,13 +261,13 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull       
 remote: Enumerating objects: 3, done.
 remote: Counting objects: 100% (3/3), done.
 remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 Unpacking objects: 100% (3/3), 852 bytes | 852.00 KiB/s, done.
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * [new branch]      main       -> origin/main
 There is no tracking information for the current branch.
 Please specify which branch you want to merge with.
@@ -280,7 +280,7 @@ If you wish to set tracking information for this branch you can do so with:
     git branch --set-upstream-to=origin/<branch> main
 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull master
 fatal: 'master' does not appear to be a git repository
 fatal: Could not read from remote repository.
@@ -288,16 +288,16 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main  
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * branch            main       -> FETCH_HEAD
 fatal: refusing to merge unrelated histories
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git add .travis.yml tests CMakeLists.txt
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git commit -m"added tests"
 On branch main
 Untracked files:
@@ -309,10 +309,10 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git add README.md file.txt input.txt travis.log
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git commit -m"update"                          
 [main 343f73d] update
  4 files changed, 102 insertions(+)
@@ -321,39 +321,39 @@ nothing added to commit but untracked files present (use "git add" to track)
  create mode 100644 input.txt
  create mode 100644 travis.log
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push -u origin main
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
-To https://github.com/mrglist3431/lab05
+To https://github.com/mrglist3431/lab06
  ! [rejected]        main -> main (non-fast-forward)
-error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
+error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
 hint: Updates were rejected because the tip of your current branch is behind                                       
 hint: its remote counterpart. If you want to integrate the remote changes,
 hint: use 'git pull' before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main   
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * branch            main       -> FETCH_HEAD
 fatal: refusing to merge unrelated histories
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git branch -M main  
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * branch            main       -> FETCH_HEAD
 fatal: refusing to merge unrelated histories
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git commit -m"update"
 On branch main
 nothing to commit, working tree clean
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull             
 There is no tracking information for the current branch.
 Please specify which branch you want to merge with.
@@ -366,25 +366,25 @@ If you wish to set tracking information for this branch you can do so with:
     git branch --set-upstream-to=origin/<branch> main
 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main 
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * branch            main       -> FETCH_HEAD
 fatal: refusing to merge unrelated histories
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main --allow-unrelated-histories
-From https://github.com/mrglist3431/lab05
+From https://github.com/mrglist3431/lab06
  * branch            main       -> FETCH_HEAD
 Auto-merging README.md
 Merge made by the 'ort' strategy.
  README.md | 1 +
  1 file changed, 1 insertion(+)
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push -u origin main                         
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
@@ -416,24 +416,24 @@ remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
 remote:            path: README.md:1017
 remote:     
 remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/mrglist3431/lab05/security/secret-scanning/unblock-secret/2yJ7oaHkv3quTuEMmvgLAjOmSwc
+remote:        https://github.com/mrglist3431/lab06/security/secret-scanning/unblock-secret/2yJ7oaHkv3quTuEMmvgLAjOmSwc
 remote:     
 remote: 
 remote: 
-To https://github.com/mrglist3431/lab05
+To https://github.com/mrglist3431/lab06
  ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
+error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ nano README.md            
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ 
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push -u origin main
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
@@ -444,16 +444,16 @@ Compressing objects: 100% (119/119), done.
 Writing objects: 100% (244/244), 109.97 KiB | 109.97 MiB/s, done.
 Total 244 (delta 106), reused 225 (delta 101), pack-reused 0 (from 0)
 remote: Resolving deltas: 100% (106/106), done.
-To https://github.com/mrglist3431/lab05
+To https://github.com/mrglist3431/lab06
    18c9dba..7302d55  main -> main
 branch 'main' set up to track 'origin/main'.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git push origin master 
 error: src refspec master does not match any
-error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
+error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ travis login --auto
 [Renaming existing File travis.log to #1#travis.log ...OK.]
                                                                                                                    
@@ -482,7 +482,7 @@ error: failed to push some refs to 'https://github.com/mrglist3431/lab05'
     There is absolutely no warranty on any results obtained from TRAVIS.
 
  #  Running on kali at Tue Jun 10 10:39:17 2025 (PID 20682)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab05
+ #  Running in /home/kali/mrglist3431/workspace/projects/lab06
  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
@@ -552,7 +552,7 @@ Unknown parameter: "login".
 *** The End ***
                                                                                                                    
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ travis enable
 [Renaming existing File travis.log to #2#travis.log ...OK.]
                                                                                                                    
@@ -581,7 +581,7 @@ Unknown parameter: "login".
     There is absolutely no warranty on any results obtained from TRAVIS.
 
  #  Running on kali at Tue Jun 10 10:39:26 2025 (PID 20765)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab05
+ #  Running in /home/kali/mrglist3431/workspace/projects/lab06
  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
@@ -651,7 +651,7 @@ Unknown parameter: "enable".
 *** The End ***
                                                                                                                    
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ travis enable
 [Renaming existing File travis.log to #3#travis.log ...OK.]
                                                                                                                    
@@ -680,7 +680,7 @@ Unknown parameter: "enable".
     There is absolutely no warranty on any results obtained from TRAVIS.
 
  #  Running on kali at Tue Jun 10 10:39:28 2025 (PID 20794)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab05
+ #  Running in /home/kali/mrglist3431/workspace/projects/lab06
  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
@@ -750,10 +750,10 @@ Unknown parameter: "enable".
 *** The End ***
                                                                                                                    
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ mkdir artifacts
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ sleep 20s && gnome-screenshot --file artifacts/screenshot.png
 Command 'gnome-screenshot' not found, but can be installed with:
 sudo apt install gnome-screenshot
@@ -782,11 +782,11 @@ Processing triggers for desktop-file-utils (0.27-2) ...
 Processing triggers for hicolor-icon-theme (0.18-1) ...
 Processing triggers for man-db (2.13.0-1) ...
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ sleep 20s && gnome-screenshot --file artifacts/screenshot.png
 ** Message: 10:40:37.630: Unable to use GNOME Shell's builtin screenshot interface, resorting to fallback X11.
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ popd
 ~/mrglist3431/workspace
                                                                                                                    
@@ -795,7 +795,7 @@ Processing triggers for man-db (2.13.0-1) ...
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace]
 └─$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER}
-Cloning into 'tasks/lab05'...
+Cloning into 'tasks/lab06'...
 remote: Enumerating objects: 137, done.
 remote: Counting objects: 100% (25/25), done.
 remote: Compressing objects: 100% (9/9), done.
@@ -812,7 +812,7 @@ Resolving deltas: 100% (60/60), done.
 ┌──(kali㉿kali)-[~/mrglist3431/workspace]
 └─$ cd reports/lab${LAB_NUMBER}
                                                                                                                    
-┌──(kali㉿kali)-[~/mrglist3431/workspace/reports/lab05]
+┌──(kali㉿kali)-[~/mrglist3431/workspace/reports/lab06]
 └─$ edit REPORT.md
 
 zsh: suspended  edit REPORT.md
