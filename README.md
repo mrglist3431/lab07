@@ -1,6 +1,19 @@
-# lab06
 ┌──(kali㉿kali)-[~]
 └─$ export GITHUB_USERNAME=mrglist3431       
+                                                                                                                   
+┌──(kali㉿kali)-[~]
+└─$  export GITHUB_EMAIL=ifedotov236@gmail.com  
+                                                                                                                   
+┌──(kali㉿kali)-[~]
+└─$ alias edit=<nano|vi|vim|subl>
+zsh: parse error near `\n'
+                                                                                                                   
+┌──(kali㉿kali)-[~]
+└─$ alias edit=<nano|vi|vim|subl>
+zsh: parse error near `\n'
+                                                                                                                   
+┌──(kali㉿kali)-[~]
+└─$ open https://cmake.org/Wiki/CMake:CPackPackageGenerators
                                                                                                                    
 ┌──(kali㉿kali)-[~]
 └─$ alias gsed=sed # for *-nix system
@@ -16,385 +29,193 @@
 └─$ source scripts/activate
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ cd projects/lab06              
+└─$ git clone https://github.com/${GITHUB_USERNAME}/lab05 projects/lab06
+Cloning into 'projects/lab06'...
+remote: Enumerating objects: 250, done.
+remote: Counting objects: 100% (250/250), done.
+remote: Compressing objects: 100% (118/118), done.
+remote: Total 250 (delta 107), reused 243 (delta 106), pack-reused 0 (from 0)
+Receiving objects: 100% (250/250), 118.18 KiB | 140.00 KiB/s, done.
+Resolving deltas: 100% (107/107), done.
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace]
+└─$ cd projects/lab06
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
-sed: can't read .travis.yml: No such file or directory
+└─$ git remote remove origin
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$     cat > .travis.yml <<EOF
-language: cpp
-
-compiler:
-  - gcc
-
-script:
-  - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DBUILD_TESTS=ON
-  - cmake --build _build --target install
-  - cmake --build _build --target test -- ARGS=--verbose
+└─$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab06
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION_STRING "v\${PRINT_VERSION}")
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION\
+  \${PRINT_VERSION_MAJOR}.\${PRINT_VERSION_MINOR}.\${PRINT_VERSION_PATCH}.\${PRINT_VERSION_TWEAK})
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION_TWEAK 0)
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION_PATCH 0)
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION_MINOR 1)
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i '/project(print)/a\
+set(PRINT_VERSION_MAJOR 0)
+' CMakeLists.txt
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$  git diff
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ee61cab..fdac133 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,5 +1,12 @@
+ cmake_minimum_required(VERSION 3.4)
+ project(print)
++set(PRINT_VERSION_MAJOR 0)
++set(PRINT_VERSION_MINOR 1)
++set(PRINT_VERSION_PATCH 0)
++set(PRINT_VERSION_TWEAK 0)
++set(PRINT_VERSION
++  ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})
++set(PRINT_VERSION_STRING "v${PRINT_VERSION}")
+ 
+ set(CMAKE_CXX_STANDARD 11)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ touch DESCRIPTION && edit DESCRIPTION
+Error: no "edit" mailcap rules found for type "inode/x-empty"
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ touch DESCRIPTION                    
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ touch ChangeLog.md
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$  export DATE="`LANG=en_US date +'%a %b %d %Y'`"
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$  cat > ChangeLog.md <<EOF
+* ${DATE} ${GITHUB_USERNAME} <${GITHUB_EMAIL}> 0.1.0.0
+- Initial RPM release
 EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
+└─$ cat > CPackConfig.cmake <<EOF
+include(InstallRequiredSystemLibraries)
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ gsed -i '/cmake --build _build --target install/a\
-- cmake --build _build --target test -- ARGS=--verbose
-' .travis.yml
+└─$ cat >> CPackConfig.cmake <<EOF
+set(CPACK_PACKAGE_CONTACT ${GITHUB_EMAIL})
+set(CPACK_PACKAGE_VERSION_MAJOR \${PRINT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR \${PRINT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH \${PRINT_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK \${PRINT_VERSION_TWEAK})
+set(CPACK_PACKAGE_VERSION \${PRINT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_FILE \${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "static C++ library for printing")
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ travis lint
+└─$ cat >> CPackConfig.cmake <<EOF
 
-  ________                                 __
- /        |                               /  |
- ########/ ______    ______    __     __  ##/    _______
-    ## |  /      \  /      \  /  \   /  | /  |  /       |
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
-    ## | ## |      /####### |   ## ##/    ## |  ######  |
-    ## | ## |      ##    ## |    ###/     ## | /     ##/
-    ##/  ##/        #######/      #/      ##/  #######/
-
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3
-
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
-
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )                           
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
-
-    There is absolutely no warranty on any results obtained from TRAVIS.
-
- #  Running on kali at Tue Jun 10 10:16:11 2025 (PID 7302)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab06
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.                                    
- #  Home: /home/kali,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
-
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
-
-    Loading configuration from /home/kali/.travis.conf ...
-
-Unknown parameter: "lint".
-                                                                                                                   
-    List of supported command line options:                                                                        
-                                                                                                                   
-      -p <file>       Load position data from specified trajectory file.                                           
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
-
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
-
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
-
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
-
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
-
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
-
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding                                                                             
-      - voro++    from Chris Rycroft                                                                               
-                                                                                                                   
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite all of the following articles for the analyses you have used:                                      
-                                                                                                                   
-  * For TRAVIS in general:                                                                                         
-                                                                                                                   
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",                                         
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 ) 
-
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )             
-
-*** The End ***
-                                                                                                                   
+set(CPACK_RESOURCE_FILE_LICENSE \${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
+set(CPACK_RESOURCE_FILE_README \${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$  git add .travis.yml
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git add tests
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git add -p
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 76e55eb..ee61cab 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -13,3 +13,12 @@ add_executable(example2 examples/example2.cpp)
- 
- target_link_libraries(example1 print)
- target_link_libraries(example2 print)
-+
-+if(BUILD_TESTS)
-+  enable_testing()
-+  add_subdirectory(third-party/gtest)
-+  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-+  add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
-+  target_link_libraries(check ${PROJECT_NAME} gtest_main)
-+  add_test(NAME check COMMAND check)
-+endif()
-(1/1) Stage this hunk [y,n,q,a,d,e,p,?]? y
+└─$ cat >> CPackConfig.cmake <<EOF
 
+set(CPACK_RPM_PACKAGE_NAME "print-devel")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "print")
+set(CPACK_RPM_CHANGELOG_FILE \${CMAKE_CURRENT_SOURCE_DIR}/ChangeLog.md)
+set(CPACK_RPM_PACKAGE_RELEASE 1)
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git commit -m"added tests"
-[main e68f8f8] added tests
- 3 files changed, 38 insertions(+)
- create mode 100644 .travis.yml
- create mode 100644 tests/test1.cpp
+└─$ cat >> CPackConfig.cmake <<EOF
+
+set(CPACK_DEBIAN_PACKAGE_NAME "libprint-dev")
+set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake >= 3.0")
+set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push origin master
+└─$ cat >> CPackConfig.cmake <<EOF
+
+include(CPack)
+EOF
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cat >> CMakeLists.txt <<EOF
+
+include(CPackConfig.cmake)
+EOF
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ gsed -i 's/lab05/lab06/g' README.md
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ git add .
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ git commit -m"added cpack config"
+[main 86aee1c] added cpack config
+ 5 files changed, 104 insertions(+), 69 deletions(-)
+ create mode 100644 CPackConfig.cmake
+ create mode 100644 ChangeLog.md
+ create mode 100644 DESCRIPTION
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ git tag v0.1.0.0
+                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$  git push origin master --tags
 error: src refspec master does not match any
 error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ A
-A: command not found
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$                                                                         gem install travis
-^CERROR:  Interrupted
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ gem install travis
-Fetching launchy-2.4.3.gem
-Fetching faraday-retry-1.0.3.gem
-Fetching websocket-1.2.11.gem
-Fetching pusher-client-0.6.2.gem
-Fetching json_pure-2.8.1.gem
-Fetching net-http-pipeline-1.0.1.gem
-Fetching net-http-persistent-2.9.4.gem
-Fetching highline-2.1.0.gem
-Fetching faraday-rack-1.0.0.gem
-Fetching faraday-patron-1.0.0.gem
-Fetching faraday-net_http_persistent-1.2.0.gem
-Fetching faraday-net_http-1.0.2.gem
-Fetching multipart-post-2.4.1.gem
-Fetching faraday-multipart-1.1.0.gem
-Fetching faraday-httpclient-1.0.1.gem
-Fetching faraday-excon-1.1.0.gem
-Fetching faraday-em_synchrony-1.0.0.gem
-Fetching faraday-em_http-1.0.0.gem
-Fetching faraday-1.10.4.gem
-Fetching faraday_middleware-1.2.1.gem
-Fetching thread_safe-0.3.6.gem
-Fetching tzinfo-1.2.11.gem
-Fetching concurrent-ruby-1.3.5.gem
-Fetching activesupport-5.2.8.1.gem
-Fetching travis-1.11.1.gem
-Fetching gh-0.18.0.gem
-ERROR:  While executing gem ... (Gem::FilePermissionError)
-    You don't have write permissions for the /var/lib/gems/3.1.0 directory.
-        /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:713:in `verify_gem_home'
-        /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:903:in `pre_install_checks'
-        /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:303:in `install'
-        /usr/lib/ruby/vendor_ruby/rubygems/resolver/specification.rb:105:in `install'
-        /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:195:in `block in install'
-        /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:183:in `each'
-        /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:183:in `install'
-        /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:215:in `install_gem'
-        /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:231:in `block in install_gems'
-        /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:224:in `each'
-        /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:224:in `install_gems'
-        /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:170:in `execute'
-        /usr/lib/ruby/vendor_ruby/rubygems/command.rb:328:in `invoke_with_build_args'
-        /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:253:in `invoke_command'
-        /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:193:in `process_args'
-        /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:151:in `run'
-        /usr/lib/ruby/vendor_ruby/rubygems/gem_runner.rb:52:in `run'
-        /usr/bin/gem:12:in `<main>'
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git branch -M main
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push -u origin main
-Username for 'https://github.com': mrglist3431
-Password for 'https://mrglist3431@github.com': 
-To https://github.com/mrglist3431/lab06
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
-hint: Updates were rejected because the remote contains work that you do not                                       
-hint: have locally. This is usually caused by another repository pushing to
-hint: the same ref. If you want to integrate the remote changes, use
-hint: 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull orign         
-fatal: 'orign' does not appear to be a git repository
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull       
-remote: Enumerating objects: 3, done.
-remote: Counting objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 852 bytes | 852.00 KiB/s, done.
-From https://github.com/mrglist3431/lab06
- * [new branch]      main       -> origin/main
-There is no tracking information for the current branch.
-Please specify which branch you want to merge with.
-See git-pull(1) for details.
-
-    git pull <remote> <branch>
-
-If you wish to set tracking information for this branch you can do so with:
-
-    git branch --set-upstream-to=origin/<branch> main
-
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull master
-fatal: 'master' does not appear to be a git repository
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull origin main  
-From https://github.com/mrglist3431/lab06
- * branch            main       -> FETCH_HEAD
-fatal: refusing to merge unrelated histories
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git add .travis.yml tests CMakeLists.txt
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git commit -m"added tests"
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        README.md
-        file.txt
-        input.txt
-        travis.log
-
-nothing added to commit but untracked files present (use "git add" to track)
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git add README.md file.txt input.txt travis.log
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git commit -m"update"                          
-[main 343f73d] update
- 4 files changed, 102 insertions(+)
- create mode 100644 README.md
- create mode 100644 file.txt
- create mode 100644 input.txt
- create mode 100644 travis.log
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push -u origin main
-Username for 'https://github.com': mrglist3431
-Password for 'https://mrglist3431@github.com': 
-To https://github.com/mrglist3431/lab06
- ! [rejected]        main -> main (non-fast-forward)
-error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
-hint: Updates were rejected because the tip of your current branch is behind                                       
-hint: its remote counterpart. If you want to integrate the remote changes,
-hint: use 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ git pull origin main   
-From https://github.com/mrglist3431/lab06
- * branch            main       -> FETCH_HEAD
-fatal: refusing to merge unrelated histories
+fatal: couldn't find remote ref main
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git branch -M main  
+└─$ git pull origin master
+fatal: couldn't find remote ref master
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull origin main
-From https://github.com/mrglist3431/lab06
- * branch            main       -> FETCH_HEAD
-fatal: refusing to merge unrelated histories
+└─$ git branch -a
+* main
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git commit -m"update"
-On branch main
-nothing to commit, working tree clean
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull             
-There is no tracking information for the current branch.
-Please specify which branch you want to merge with.
-See git-pull(1) for details.
-
-    git pull <remote> <branch>
-
-If you wish to set tracking information for this branch you can do so with:
-
-    git branch --set-upstream-to=origin/<branch> main
-
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull origin main 
-From https://github.com/mrglist3431/lab06
- * branch            main       -> FETCH_HEAD
-fatal: refusing to merge unrelated histories
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ 
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git pull origin main --allow-unrelated-histories
-From https://github.com/mrglist3431/lab06
- * branch            main       -> FETCH_HEAD
-Auto-merging README.md
-Merge made by the 'ort' strategy.
- README.md | 1 +
- 1 file changed, 1 insertion(+)
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push -u origin main                         
+└─$ git push origin main --tags
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
-Enumerating objects: 246, done.
-Counting objects: 100% (246/246), done.
+Enumerating objects: 256, done.
+Counting objects: 100% (256/256), done.
 Delta compression using up to 16 threads
-Compressing objects: 100% (119/119), done.
-Writing objects: 100% (244/244), 109.97 KiB | 109.97 MiB/s, done.
-Total 244 (delta 106), reused 225 (delta 101), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (106/106), done.
+Compressing objects: 100% (123/123), done.
+Writing objects: 100% (256/256), 119.46 KiB | 119.46 MiB/s, done.
+Total 256 (delta 110), reused 247 (delta 107), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (110/110), done.
 remote: error: GH013: Repository rule violations found for refs/heads/main.
 remote: 
 remote: - GITHUB PUSH PROTECTION
@@ -416,404 +237,193 @@ remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
 remote:            path: README.md:1017
 remote:     
 remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/mrglist3431/lab06/security/secret-scanning/unblock-secret/2yJ7oaHkv3quTuEMmvgLAjOmSwc
+remote:        https://github.com/mrglist3431/lab06/security/secret-scanning/unblock-secret/2yJAuWYSdxPGAVbICYVOHc3yfNu
+remote:     
+remote: 
+remote: 
+remote: error: GH013: Repository rule violations found for refs/tags/v0.1.0.0.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1014
+remote:          - commit: 7586a7a6f02fecc872962dce46e6dfbf088ef936
+remote:            path: README.md:1017
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/mrglist3431/lab06/security/secret-scanning/unblock-secret/2yJAuWYSdxPGAVbICYVOHc3yfNu
 remote:     
 remote: 
 remote: 
 To https://github.com/mrglist3431/lab06
  ! [remote rejected] main -> main (push declined due to repository rule violations)
+ ! [remote rejected] v0.1.0.0 -> v0.1.0.0 (push declined due to repository rule violations)
 error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ 
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ nano README.md            
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ 
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push -u origin main
+└─$ git push origin main --tags
 Username for 'https://github.com': mrglist3431
 Password for 'https://mrglist3431@github.com': 
-Enumerating objects: 246, done.
-Counting objects: 100% (246/246), done.
+Enumerating objects: 256, done.
+Counting objects: 100% (256/256), done.
 Delta compression using up to 16 threads
-Compressing objects: 100% (119/119), done.
-Writing objects: 100% (244/244), 109.97 KiB | 109.97 MiB/s, done.
-Total 244 (delta 106), reused 225 (delta 101), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (106/106), done.
+Compressing objects: 100% (123/123), done.
+Writing objects: 100% (256/256), 119.46 KiB | 59.73 MiB/s, done.
+Total 256 (delta 110), reused 247 (delta 107), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (110/110), done.
 To https://github.com/mrglist3431/lab06
-   18c9dba..7302d55  main -> main
-branch 'main' set up to track 'origin/main'.
+ * [new branch]      main -> main
+ * [new tag]         v0.1.0.0 -> v0.1.0.0
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ git push origin master 
-error: src refspec master does not match any
-error: failed to push some refs to 'https://github.com/mrglist3431/lab06'
+└─$ cmake -H. -B_build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at /usr/share/cmake-3.30/Modules/CPack.cmake:688 (message):
+  CPack license resource file:                                                                                     
+  "/home/kali/mrglist3431/workspace/projects/lab06/LICENSE" could not be                                           
+  found.                                                                                                           
+Call Stack (most recent call first):                                                                               
+  /usr/share/cmake-3.30/Modules/CPack.cmake:693 (cpack_check_file_exists)                                          
+  CPackConfig.cmake:24 (include)                                                                                   
+  CMakeLists.txt:33 (include)                                                                                      
+                                                                                                                   
+                                                                                                                   
+-- Configuring incomplete, errors occurred!
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ travis login --auto
-[Renaming existing File travis.log to #1#travis.log ...OK.]
-                                                                                                                   
-  ________                                 __
- /        |                               /  |                                                                     
- ########/ ______    ______    __     __  ##/    _______                                                           
-    ## |  /      \  /      \  /  \   /  | /  |  /       |                                                          
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/                                                           
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \                                                           
-    ## | ## |      /####### |   ## ##/    ## |  ######  |                                                          
-    ## | ## |      ##    ## |    ###/     ## | /     ##/                                                           
-    ##/  ##/        #######/      #/      ##/  #######/                                                            
-                                                                                                                   
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3                              
-                                                                                                                   
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)                                       
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
+└─$ cat > LICENSE <<EOF
+MIT License
 
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )                           
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
+Copyright (c) $(date +%Y) Your Name
 
-    There is absolutely no warranty on any results obtained from TRAVIS.
-
- #  Running on kali at Tue Jun 10 10:39:17 2025 (PID 20682)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab06
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.                                    
- #  Home: /home/kali,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
-
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
-
-    Loading configuration from /home/kali/.travis.conf ...
-
-[Renaming existing File input.txt to #1#input.txt ...OK.]
-Unknown parameter: "login".                                                                                        
-                                                                                                                   
-    List of supported command line options:                                                                        
-                                                                                                                   
-      -p <file>       Load position data from specified trajectory file.                                           
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
-
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
-
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
-
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
-
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
-
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
-
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding                                                                             
-      - voro++    from Chris Rycroft                                                                               
-                                                                                                                   
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite all of the following articles for the analyses you have used:                                      
-                                                                                                                   
-  * For TRAVIS in general:                                                                                         
-                                                                                                                   
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",                                         
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 ) 
-
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )             
-
-*** The End ***
-                                                                                                                   
+Permission is hereby granted...
+EOF
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ travis enable
-[Renaming existing File travis.log to #2#travis.log ...OK.]
-                                                                                                                   
-  ________                                 __
- /        |                               /  |                                                                     
- ########/ ______    ______    __     __  ##/    _______                                                           
-    ## |  /      \  /      \  /  \   /  | /  |  /       |                                                          
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/                                                           
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \                                                           
-    ## | ## |      /####### |   ## ##/    ## |  ######  |                                                          
-    ## | ## |      ##    ## |    ###/     ## | /     ##/                                                           
-    ##/  ##/        #######/      #/      ##/  #######/                                                            
-                                                                                                                   
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3                              
-                                                                                                                   
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)                                       
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
-
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )                           
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
-
-    There is absolutely no warranty on any results obtained from TRAVIS.
-
- #  Running on kali at Tue Jun 10 10:39:26 2025 (PID 20765)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab06
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.                                    
- #  Home: /home/kali,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
-
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
-
-    Loading configuration from /home/kali/.travis.conf ...
-
-[Renaming existing File input.txt to #2#input.txt ...OK.]
-Unknown parameter: "enable".                                                                                       
-                                                                                                                   
-    List of supported command line options:                                                                        
-                                                                                                                   
-      -p <file>       Load position data from specified trajectory file.                                           
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
-
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
-
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
-
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
-
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
-
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
-
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding                                                                             
-      - voro++    from Chris Rycroft                                                                               
-                                                                                                                   
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite all of the following articles for the analyses you have used:                                      
-                                                                                                                   
-  * For TRAVIS in general:                                                                                         
-                                                                                                                   
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",                                         
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 ) 
-
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )             
-
-*** The End ***
-                                                                                                                   
+└─$ curl -o LICENSE https://www.gnu.org/licenses/gpl-3.0.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 35149  100 35149    0     0  32295      0  0:00:01  0:00:01 --:--:-- 32276
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ travis enable
-[Renaming existing File travis.log to #3#travis.log ...OK.]
+└─$ curl -o LICENSE https://opensource.org/licenses/MIT
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
                                                                                                                    
-  ________                                 __
- /        |                               /  |                                                                     
- ########/ ______    ______    __     __  ##/    _______                                                           
-    ## |  /      \  /      \  /  \   /  | /  |  /       |                                                          
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/                                                           
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \                                                           
-    ## | ## |      /####### |   ## ##/    ## |  ######  |                                                          
-    ## | ## |      ##    ## |    ###/     ## | /     ##/                                                           
-    ##/  ##/        #######/      #/      ##/  #######/                                                            
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cmake -H. -B_build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kali/mrglist3431/workspace/projects/lab06/_build
                                                                                                                    
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3                              
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cmake --build _build
+[ 16%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+[ 33%] Linking CXX static library libprint.a
+[ 33%] Built target print
+[ 50%] Building CXX object CMakeFiles/example1.dir/examples/example1.cpp.o
+[ 66%] Linking CXX executable example1
+[ 66%] Built target example1
+[ 83%] Building CXX object CMakeFiles/example2.dir/examples/example2.cpp.o
+[100%] Linking CXX executable example2
+[100%] Built target example2
                                                                                                                    
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)                                       
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
-
-    http://www.travis-analyzer.de
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cd _build
                                                                                                                    
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )                           
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
-
-    There is absolutely no warranty on any results obtained from TRAVIS.
-
- #  Running on kali at Tue Jun 10 10:39:28 2025 (PID 20794)
- #  Running in /home/kali/mrglist3431/workspace/projects/lab06
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.                                    
- #  Home: /home/kali,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
-
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
-
-    Loading configuration from /home/kali/.travis.conf ...
-
-[Renaming existing File input.txt to #3#input.txt ...OK.]
-Unknown parameter: "enable".                                                                                       
+┌──(kali㉿kali)-[~/…/workspace/projects/lab06/_build]
+└─$ cpack -G "TGZ"
+CPack: Create package using TGZ
+CPack: Install projects
+CPack: - Run preinstall target for: print
+CPack: - Install project: print []
+CPack: Create package
+CPack: - package: /home/kali/mrglist3431/workspace/projects/lab06/_build/print-0.1.0.0-Linux.tar.gz generated.
                                                                                                                    
-    List of supported command line options:                                                                        
+┌──(kali㉿kali)-[~/…/workspace/projects/lab06/_build]
+└─$ cd ..
                                                                                                                    
-      -p <file>       Load position data from specified trajectory file.                                           
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
 
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
 
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
-
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
-
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
-
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding                                                                             
-      - voro++    from Chris Rycroft                                                                               
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kali/mrglist3431/workspace/projects/lab06/_build
                                                                                                                    
-    http://www.travis-analyzer.de
-                                                                                                                   
-    Please cite all of the following articles for the analyses you have used:                                      
-                                                                                                                   
-  * For TRAVIS in general:                                                                                         
-                                                                                                                   
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",                                         
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 ) 
-
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )             
-
-*** The End ***
-                                                                                                                   
+┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
+└─$ cmake --build _build --target package
+[ 33%] Built target print
+[ 66%] Built target example1
+[100%] Built target example2
+Run CPack packaging tool...
+CPack: Create package using TGZ
+CPack: Install projects
+CPack: - Run preinstall target for: print
+CPack: - Install project: print []
+CPack: Create package
+CPack: - package: /home/kali/mrglist3431/workspace/projects/lab06/_build/print-0.1.0.0-Linux.tar.gz generated.
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
 └─$ mkdir artifacts
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ sleep 20s && gnome-screenshot --file artifacts/screenshot.png
-Command 'gnome-screenshot' not found, but can be installed with:
-sudo apt install gnome-screenshot
-Do you want to install it? (N/y)y
-sudo apt install gnome-screenshot
-[sudo] password for kali: 
-Installing:                     
-  gnome-screenshot
-                                                                                                                   
-Summary:
-  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 1379
-  Download size: 162 kB
-  Space needed: 1,142 kB / 318 GB available
-
-Get:1 http://kali.download/kali kali-rolling/main amd64 gnome-screenshot amd64 41.0-3 [162 kB]
-Fetched 162 kB in 2s (77.7 kB/s)         
-Selecting previously unselected package gnome-screenshot.
-(Reading database ... 411193 files and directories currently installed.)
-Preparing to unpack .../gnome-screenshot_41.0-3_amd64.deb ...
-Unpacking gnome-screenshot (41.0-3) ...
-Setting up gnome-screenshot (41.0-3) ...
-Processing triggers for libglib2.0-0t64:amd64 (2.82.2-2) ...
-Processing triggers for mailcap (3.74) ...
-Processing triggers for kali-menu (2024.4.0) ...
-Processing triggers for desktop-file-utils (0.27-2) ...
-Processing triggers for hicolor-icon-theme (0.18-1) ...
-Processing triggers for man-db (2.13.0-1) ...
+└─$ mv _build/*.tar.gz artifacts
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ sleep 20s && gnome-screenshot --file artifacts/screenshot.png
-** Message: 10:40:37.630: Unable to use GNOME Shell's builtin screenshot interface, resorting to fallback X11.
+└─$  tree artifacts
+artifacts
+└── print-0.1.0.0-Linux.tar.gz
+
+1 directory, 1 file
                                                                                                                    
 ┌──(kali㉿kali)-[~/mrglist3431/workspace/projects/lab06]
-└─$ popd
-~/mrglist3431/workspace
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ export LAB_NUMBER=05
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER}
-Cloning into 'tasks/lab06'...
-remote: Enumerating objects: 137, done.
-remote: Counting objects: 100% (25/25), done.
-remote: Compressing objects: 100% (9/9), done.
-remote: Total 137 (delta 18), reused 16 (delta 16), pack-reused 112 (from 1)
-Receiving objects: 100% (137/137), 918.92 KiB | 329.00 KiB/s, done.
-Resolving deltas: 100% (60/60), done.
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ mkdir reports/lab${LAB_NUMBER}
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace]
-└─$ cd reports/lab${LAB_NUMBER}
-                                                                                                                   
-┌──(kali㉿kali)-[~/mrglist3431/workspace/reports/lab06]
-└─$ edit REPORT.md
-
-zsh: suspended  edit REPORT.md
-                                           
+└─$ 
